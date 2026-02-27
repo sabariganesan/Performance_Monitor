@@ -1,0 +1,28 @@
+/* Loader.css */
+.loader-overlay {
+  /* Position and size the overlay to cover the entire screen or a specific container */
+  position: fixed; /* Use 'absolute' if you want to overlay a specific parent container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3; /* Light grey border */
+  border-top: 5px solid #3498db; /* Blue top border to create the spinner effect */
+  border-radius: 50%; /* Make it circular */
+  animation: spin 1s linear infinite; /* Apply the spinning animation */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
