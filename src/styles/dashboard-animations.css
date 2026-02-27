@@ -1,0 +1,173 @@
+/* Critical State Animations - Subtle and Professional */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0;
+  }
+}
+
+/* Stats Card Progress Bar Animation - Smooth Fill */
+@keyframes stats-progress-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Critical Stats Card Progress Glow - Very Subtle */
+@keyframes stats-critical-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 8px 2px rgba(239, 68, 68, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Critical Node Card - Subtle Glow Border */
+.node-card-critical {
+  animation: pulse-glow 2s ease-in-out infinite;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Critical Badge Breathing */
+.badge-critical {
+  animation: breathing 2s ease-in-out infinite;
+}
+
+/* Progress Bar Animation */
+.progress-bar-animated {
+  animation: progress-fill 1s ease-out;
+}
+
+/* Stats Card Progress Bar - Refined Design */
+.stats-progress-bar {
+  height: 8px;
+  border-radius: 100px;
+  background: #E5E7EB;
+  overflow: hidden;
+}
+
+.stats-progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  animation: stats-progress-fill 600ms ease-out forwards;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.stats-progress-fill.critical {
+  animation: stats-progress-fill 600ms ease-out forwards, stats-critical-glow 3s ease-in-out infinite;
+}
+
+/* Stats Card Hover Effects */
+.stats-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.stats-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Pulse Status Dot Animation */
+@keyframes pulse-status-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.pulse-status-dot {
+  animation: pulse-status-dot 2s ease-in-out infinite;
+}
+
+/* Critical Card Glow Border - Very Subtle */
+.critical-card-glow {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(239, 68, 68, 0.2);
+}
+
+.critical-card-glow:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(239, 68, 68, 0.3);
+}
+
+/* Stagger Animation for Cards */
+.stagger-item {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* Smooth Transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tooltip Styles */
+.metric-tooltip {
+  position: relative;
+}
+
+.metric-tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 4px;
+}
