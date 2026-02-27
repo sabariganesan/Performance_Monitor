@@ -27,3 +27,15 @@ export const getNodeDetails = async (
     throw error;
   }
 };
+
+export const getClusterInsights = async (startDate: string, endDate: string) => {
+  try {
+    const response = await fetch(
+      `https://brightspeedtsmnonprod1.service-now.com/api/fobr/system_health/cluster/insight?start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}`,
+    );
+    return response?.json();
+  } catch (error) {
+    console.error("Error fetching cluster insights:", error);
+    throw error;
+  }
+}

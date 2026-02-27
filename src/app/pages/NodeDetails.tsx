@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Server,
   Layers,
-  Loader,
 } from "lucide-react";
 import { getNodeById, getApplicationsByNode } from "../data/mockData";
 import {
@@ -40,6 +39,7 @@ import {
 } from "../../services/dashboardService.type";
 import { getNodeDetails } from "../../services/dashboardService";
 import { mapSeries } from "../../utils/graphUtil";
+import Loader from "../components/ui/loader";
 
 export default function NodeDetails() {
   const location = useLocation();
@@ -50,6 +50,8 @@ export default function NodeDetails() {
 
   const [details, setDetails] = useState<PerformanceMetricsBase | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(isLoading, "isLoading");
 
   const responseTimeData = mapSeries(
     details?.response_time_ms,
@@ -248,7 +250,8 @@ export default function NodeDetails() {
           <Card className="bg-white border-gray-200">
             <CardHeader>
               <CardTitle className="text-base">
-                Resource Utilization (Last 1 Hour)
+                Resource Utilization (Last {node?.range?.split("h")[0] ?? ""}{" "}
+                Hour)
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -346,7 +349,8 @@ export default function NodeDetails() {
           <Card className="bg-white border-gray-200">
             <CardHeader>
               <CardTitle className="text-base">
-                Database Response Time (Last 1 Hour)
+                Database Response Time (Last {node?.range?.split("h")[0] ?? ""}{" "}
+                Hour)
               </CardTitle>
             </CardHeader>
             <CardContent>

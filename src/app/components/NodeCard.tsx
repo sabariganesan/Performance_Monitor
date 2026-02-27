@@ -253,24 +253,24 @@ export default function NodeCard({ node }: NodeCardProps) {
         </div>
 
         {/* Alert Block Area - Minimal Fixed Height */}
-        <div className="mt-auto min-h-[32px]">
-          {Number(node.avg_queue_length_ms) > 0.1 ||
-          Number(node.slow_transaction_percent) > 20000 ||
-          isCritical ? (
+        {Array.isArray(node?.reasons) && node?.reasons?.length > 0 && (
+          <div className="mt-auto min-h-[32px]">
             <div className="flex items-start gap-1 p-1.5 bg-amber-50 border border-amber-200 rounded">
               <AlertTriangle className="w-3 h-3 text-amber-600 flex-shrink-0" />
-              <p className="text-xs text-amber-700 leading-tight">
-                {isCritical
-                  ? "Critical"
-                  : Number(node.avg_queue_length_ms) > 0.1
-                    ? "High queue"
-                    : "Slow transactions"}
-              </p>
+              <p className="text-xs text-amber-700 leading-tight">Reason:</p>
+              <ol className="">
+                {node.reasons.map((reason, index) => (
+                  <li
+                    key={index}
+                    className="text-xs text-amber-700 leading-tight list-decimal ml-4 lis"
+                  >
+                    {reason}
+                  </li>
+                ))}
+              </ol>
             </div>
-          ) : (
-            <div className="h-[32px]" aria-hidden="true"></div>
-          )}
-        </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );

@@ -184,7 +184,20 @@ export default function Dashboard() {
   const handleNavigateCard = (node: NodeHealthStatus) => {
     navigate(`/node/${node.system_id}`, {
       state: {
-        node: { ...node, dateRange: getDateRange(timeRange as RangeType) },
+        node: {
+          ...node,
+          dateRange: getDateRange(timeRange as RangeType),
+          range: timeRange,
+        },
+      },
+    });
+  };
+
+  const handleNavigateCluster = () => {
+    navigate("/cluster-insights", {
+      state: {
+        dateRange: getDateRange(timeRange as RangeType),
+        range: timeRange,
       },
     });
   };
@@ -560,15 +573,16 @@ export default function Dashboard() {
 
             {/* View Insights Button */}
             <div className="flex justify-end">
-              <Link to="/cluster-insights">
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
-                  <Activity className="w-4 h-4" />
-                  <span className="text-sm font-medium">
-                    View Cluster Insights
-                  </span>
-                  <TrendingUp className="w-4 h-4" />
-                </button>
-              </Link>
+              <button
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+                onClick={handleNavigateCluster}
+              >
+                <Activity className="w-4 h-4" />
+                <span className="text-sm font-medium">
+                  View Cluster Insights
+                </span>
+                <TrendingUp className="w-4 h-4" />
+              </button>
             </div>
 
             {/* Cluster Node Cards */}

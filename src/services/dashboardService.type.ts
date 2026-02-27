@@ -1,3 +1,5 @@
+import ClusterInsights from "../app/pages/ClusterInsights";
+
 export type AmbStatus = "NORMAL" | "WARNING";
 export type HealthStatus = "NORMAL" | "WARNING" | "CRITICAL";
 export type NodeStatus = "online" | "offline";
@@ -17,6 +19,7 @@ export interface NodeHealthStatus {
   status: string;
   system_id: string;
   total_transactions: number;
+  reasons?: string[]; 
 }
 
 export type ClusterOverviewResponse = {
@@ -85,4 +88,36 @@ export interface PerformanceMetricsResponse {
     start_date: string[];
     end_date: string[];
   };
+}
+
+export interface NodeState {
+  amb: number;
+  avg_db: number;
+  avg_queue: number;
+  cpu: number;
+  health_status: string;
+  memory: number;
+  node_name: string;
+  transactions: number;
+}
+
+interface StatsCard {
+  avg_cpu: string;
+  avg_db_time_ms: number;
+  avg_memory: string;
+  max_queue: number;
+  total_amb: number;
+  total_txns: number;
+}
+
+export interface ClusterInsightsData {
+  data: Record<string, any>[];
+  end_date: string[];
+  start_date: string[];
+  node_statuses: NodeState[];
+  stats_card: StatsCard;
+}
+
+export interface ClusterInsightsResponse {
+  result: ClusterInsightsData;
 }
